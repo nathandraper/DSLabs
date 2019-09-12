@@ -1,0 +1,23 @@
+ID: 15345243
+Units: 100
+Price: 1.99
+Description: Blue widget used for powering devices.
+TaxExempt: false 
+
+ID: 22345346
+Units: 200
+Price: 2.54
+Description: Red widget used for unpowering devices.
+TaxExempt: true
+
+ID: 37243755
+Units: 300
+Price: 3.74
+Description: Green widget used for half powering devices.
+TaxExempt: false
+
+ID: 52552885
+Units: 231
+Price: 45.28
+Description: Rando widget with no purpose
+TaxExempt: true
