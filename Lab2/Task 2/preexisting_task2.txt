@@ -1,0 +1,14 @@
+The sales for the company is: $
+Div	Q1	Q2	Q3	Q4
+1	$2.00	$2.00	$2.00	$2.00	
+2	$2.00	$2.00	$2.00	$2.00	
+3	$2.00	$2.00	$2.00	$2.00	
+
+The total sales for the company are: $24.00
+The sales for the company is: $
+Div	Q1	Q2	Q3	Q4
+1	$3.00	$3.00	$3.00	$3.00	
+2	$3.00	$3.00	$3.00	$3.00	
+3	$3.00	$3.00	$3.00	$3.00	
+
+The total sales for the company are: $36.00
