@@ -13,6 +13,12 @@ private:
 	T** stack;
 
 public:
+	Stack() {
+		this->stack = nullptr;
+		this->size = 0;
+		this->i = -1;
+	}
+
 	Stack(int size) {
 		this->stack = new T * [size];
 		this->size = size;
@@ -69,6 +75,22 @@ public:
 
 	bool isFull() {
 		return this->i == this->size - 1;
+	}
+
+	bool isEmpty() {
+		return this->i == -1;
+	}
+
+	bool isComplete(int start, int end, int num) {
+		if (this->i + 1 != num) {
+			return false;
+		}
+		for (int i = end; i >= start; i--) {
+			if (i != *this->stack[((i - 1) % num)]) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	friend void displayTower(Stack<int> tower);
