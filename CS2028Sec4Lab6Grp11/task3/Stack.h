@@ -60,7 +60,7 @@ public:
 	}
 
 	void empty() {
-		for (int i = 0; i < this->size; i++) {
+		for (int i = 0; i <= this->i; i++) {
 			delete stack[i];
 		}
 		this->i = -1;
@@ -81,19 +81,8 @@ public:
 		return this->i == -1;
 	}
 
-	bool isComplete(int start, int end, int num) {
-		if (this->i + 1 != num) {
-			return false;
-		}
-		for (int i = end; i >= start; i--) {
-			if (i != *this->stack[((i - 1) % num)]) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	friend void displayTower(Stack<int> tower);
+	friend bool isComplete(int start, int end, Stack<int>tower);
+	friend void displayTower(int numDiscs, Stack<int> tower);
 };
 
 #endif
