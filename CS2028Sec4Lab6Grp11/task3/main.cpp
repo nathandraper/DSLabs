@@ -76,6 +76,8 @@ int main() {
 
 		resetTowers(towers);
 	}
+
+	return 0;
 }
 
 // This function prompts the user for an integer, validates that the input stream has no errors, and then returns the integer

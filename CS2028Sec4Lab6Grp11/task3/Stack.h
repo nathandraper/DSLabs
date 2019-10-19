@@ -66,13 +66,6 @@ public:
 		this->i = -1;
 	}
 
-	void fill() {
-		for (int i = 0; i < this->size; i++) {
-			stack[i] = new int(this->size - i);
-		}
-		this->i = this->size - 1;
-	}
-
 	bool isFull() {
 		return this->i == this->size - 1;
 	}
@@ -83,6 +76,7 @@ public:
 
 	friend bool isComplete(int start, int end, Stack<int>tower);
 	friend void displayTower(int numDiscs, Stack<int> tower);
+	friend void displayTower(Stack<int> &tower);
 };
 
 #endif
