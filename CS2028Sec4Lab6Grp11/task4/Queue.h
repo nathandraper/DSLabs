@@ -2,6 +2,7 @@
 #define QUEUE_H
 
 #include <vector>
+#include "QueueUnderflow.h"
 
 template <typename T>
 class Queue
@@ -11,24 +12,46 @@ private:
 	int length;
 
 public:
+	Queue() {
+		this->length = 0;
+	}
+
 	int getLength() {
 		return this->length
 	}
 
+	// enqueue by inserting at beginning of vector
 	void enqueue(T data) {
 		this->queue.insert(this->queue.begin(), data);
 		this->length++;
 	}
 
+	// dequeue by popping off end of vector, FIFO
 	T dequeue() {
-		T data = this->queue.back();
-		this->queue.pop_back();
-		
-		return data;
+		if (this->length <= 0) {
+			throw QueueUnderflow();
+		}
+		else {
+			T data = this->queue.back();
+			this->queue.pop_back();
+			this->length--;
+
+			return data;
+		}
+	}
+
+	T peek() {
+		if (this->length <= 0) {
+			throw QueueUnderflow()
+		}
+		else {
+			return this->dequeue.back();
+		}
 	}
 
 	void clear() {
-		this->dequeue.clear();
+		this->queue.clear();
+		this->length = 0;
 	}
 
 	friend displayTower(Queue<int> tower);
