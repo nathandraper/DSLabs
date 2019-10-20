@@ -4,6 +4,8 @@
 #include <vector>
 #include "QueueUnderflow.h"
 
+using namespace std;
+
 template <typename T>
 class Queue
 {
@@ -17,7 +19,7 @@ public:
 	}
 
 	int getLength() {
-		return this->length
+		return this->length;
 	}
 
 	// enqueue by inserting at beginning of vector
@@ -42,7 +44,7 @@ public:
 
 	T peek() {
 		if (this->length <= 0) {
-			throw QueueUnderflow()
+			throw QueueUnderflow();
 		}
 		else {
 			return this->dequeue.back();
@@ -53,9 +55,6 @@ public:
 		this->queue.clear();
 		this->length = 0;
 	}
-
-	friend displayTower(Queue<int> tower);
-	friend isComplete(int numDiscs, Queue<int> tower);
 };
 
 #endif
