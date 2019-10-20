@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "QueueUnderflow.h"
+#include "Move.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ public:
 		this->length = 0;
 	}
 
-	int getLength() {
+	const int getLength() {
 		return this->length;
 	}
 
@@ -55,7 +56,8 @@ public:
 		this->queue.clear();
 		this->length = 0;
 	}
-};
 
+	friend void printMoves(Queue<Move>& moves);
+};
 #endif
 
