@@ -1,10 +1,11 @@
 #include <iostream>
+#include <limits>
 #include "Queue.h"
 #include "QueueUnderflow.h"
 #include "Move.h"
-#include "C:\Users\Nate\source\repos\DSlab6a\DSlab6a\Stack.h"
-#include "C:\Users\Nate\source\repos\DSlab6a\DSlab6a\StackOverflow.h"
-#include "C:\Users\Nate\source\repos\DSlab6a\DSlab6a\StackUnderflow.h"
+#include "Stack.h"
+#include "StackOverflow.h"
+#include "StackUnderflow.h"
 
 using namespace std;
 
@@ -20,8 +21,8 @@ void printMoves(Queue<Move>& moves);
 
 int main() {
 	// variables
-	int choice1;
-	int choice2;
+	int source;
+	int dest;
 	bool comparison;
 
 	// prompt user for number of discs to play with
@@ -50,14 +51,17 @@ int main() {
 		choose = true;
 		while (choose) {
 			cout << "Select tower to move from: ";
-			choice1 = getTower() - 1;
+			source = getTower() - 1;
 
 			cout << "Select tower to move to: ";
-			choice2 = getTower() - 1;
+			dest = getTower() - 1;
 			cout << endl;
 
+			// ensure that the destination tower has a disc greater than the source tower
+			// in the case that the receiving tower is empty, the game should allow it as a valid destination
+			// if the source tower is empty the next try/catch will catch it
 			try {
-				comparison = *towers[choice1].top() < *towers[choice2].top();
+				comparison = *towers[source].top() < *towers[dest].top();
 			}
 			catch (StackUnderflow e) {
 				comparison = true;
@@ -65,17 +69,19 @@ int main() {
 
 			if (comparison) {
 				try {
-					towers[choice2].push(towers[choice1].pop());
+					towers[dest].push(towers[source].pop());
 				}
 				catch (StackOverflow e) {
 					cout << "That tower is full." << endl;
 					cout << e.what() << endl;
 					choose = true;
+					continue;
 				}
 				catch (StackUnderflow e) {
 					cout << "That tower is empty." << endl;
 					cout << e.what() << endl;
 					choose = true;
+					continue;
 				}
 				choose = false;
 			}
@@ -86,16 +92,24 @@ int main() {
 		}
 
 		// store move for this turn
-		moves.enqueue(Move{ choice1, choice2 });
+		moves.enqueue(Move{ source, dest });
 
+		// if the tower is full, the game is complete
+		// the game will not allow discs to be stacked out of order, so as long as the target tower is full it's game over
 		if (towers[2].isFull()) {
 			printTowers(towers);
 			cout << "The tower is complete! Thank you for playing." << endl;
-			cout << "Moves: " << moves.getLength() << endl; 
+			cout << "Moves: " << moves.getLength() << endl;
 			printMoves(moves);
 			run = false;
 		}
 	}
+
+	// release memory
+	for (int i = 0; i < NUM_TOWERS; i++) {
+		towers[i].empty();
+	}
+
 }
 
 
@@ -158,6 +172,7 @@ void printTowers(Stack<int> towers[]) {
 	}
 }
 
+// will print the moves made during the course of the game with formatting
 void printMoves(Queue<Move>& moves) {
 	int len = moves.getLength();
 	for (int i = 0; i < len; i++) {

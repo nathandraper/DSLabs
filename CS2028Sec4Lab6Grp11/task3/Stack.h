@@ -62,6 +62,7 @@ public:
 	void empty() {
 		for (int i = 0; i <= this->i; i++) {
 			delete stack[i];
+			stack[i] = nullptr;
 		}
 		this->i = -1;
 	}

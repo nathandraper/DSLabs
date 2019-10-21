@@ -1,9 +1,9 @@
 #include <iostream>
 #include <limits>
 
-#include "C:\Users\Nate\source\repos\DSlab6a\DSlab6a\Stack.h"
-#include "C:\Users\Nate\source\repos\DSlab6a\DSlab6a\StackOverflow.h"
-#include "C:\Users\Nate\source\repos\DSlab6a\DSlab6a\StackUnderflow.h"
+#include "Stack.h"
+#include "StackOverflow.h"
+#include "StackUnderflow.h"
 
 using namespace std;
 
